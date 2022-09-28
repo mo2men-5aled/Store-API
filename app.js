@@ -9,10 +9,11 @@ const productsRouter = require("./routes/products");
 
 const notFound = require("./middleware/not-found");
 const errorHandler = require("./middleware/error-handler");
+
 //middleware
 app.use(express.json());
-app.use(notFound);
 app.use(errorHandler);
+
 //routes
 app.use("/api/v1/products", productsRouter);
 app.get("/", (req, res) => {
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 //products route
+app.use(notFound);
 
 const port = 4000;
 const start = async () => {
